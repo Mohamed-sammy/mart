@@ -1,0 +1,23 @@
+.ng-invalid.ng-touched{
+  border-color: red;
+}
+.error-block{
+  color: red;
+}
+
+.btn-group > label[tabindex]{
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 30px;
+}
+
+.card-header > h3 {
+  color: white;
+}
+
+.card-header {
+  padding: 4px 10px !important;
+}
+.card-title{
+  color: #0069d9;
+}

@@ -1,0 +1,33 @@
+<header>
+  <div class="navbar navbar-dark bg-primary shadow-sm">
+    <div class="navbar-brand align-item-center d-flex">
+      <i style="font-size:40px" class="fas fa-shipping-fast">
+        <strong>Mart</strong>
+      </i>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search">
+        <span>
+          <i class="fas fa-search search-icon"></i>
+        </span>
+      </div>
+    </div>
+  <div *ngIf="loggedIn()" class="d-flex">
+    <button *ngIf="isAdmin == 2" type="button" class="btn btn-primary" [routerLink]="['/cart']" >
+      <i style="font-size:30px" class="fas fa-cart-plus"></i>
+      <div style="font-size: 10px" class="badge bg-danger">{{totalItem}}</div>
+    </button>
+    <button *ngIf="isAdmin == 1" type="button" class="btn btn-primary" [routerLink]="['/addProduct']">add Product</button>
+    <div class="dropdown">
+    <a class="nav-linkdropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Welcome {{loogedinUser}}</a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" (click)='onloggedOut()' [routerLink]="['/login']">LogOut</a></li>
+    </ul>
+    </div>
+</div>
+      <div *ngIf="!loggedIn()" class="d-flex">
+        <a class="btn btn-primary" role="button" [routerLink]="['/login']">Login</a>
+        <a class="btn btn-primary" role="button" [routerLink]="['/register']">Register</a>
+      </div>
+
+      </div>
+</header>

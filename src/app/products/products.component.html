@@ -1,0 +1,60 @@
+<div class="card-top container-fluid">
+  <div class="container d-flex">
+    <div class="item">
+      <a (click)="filter('')">
+        <h4>All Product</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('fashion')">
+        <h4>Fashion</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('electronics')">
+        <h4>ELectronics</h4>
+      </a>
+    </div>
+    <div class="item item-jewellery">
+      <a (click)="filter('jewelery')">
+        <h4>jewellery</h4>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+      <div *ngIf="isLoading" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    <ng-container *ngFor="let item of filterCategory | slice: (page-1) * pageSize : page * pageSize | filter:searchKey:'title'" #productsTemplate>
+      <div class="card product-card col-md-3">
+        <div class="card-img-wrapper">
+        <img  class="card-img-top" src="{{item.image}}" class="propImg">
+        <ul *ngIf="isAdmin == 1" class="list-inline icon-member text-center animate">
+          <li class="list-inline-item">
+             <button class="btn btn-primary" [routerLink]="['/updateproduct']"><i class="fas fa-edit"></i></button>
+          </li>
+          <li class="list-inline-item">
+            <button class="btn btn-primary"><i class="fas fa-trash"></i></button>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body p-1 ">
+        <h1 class="mb-0 prod-overflow"> {{item.title}}</h1>
+        <h6  class="mt-2 prod-overflow">{{item.description}} </h6>
+        <hr class="mt-0 mb-2">
+        <h6 class="mb-0">Price: <span class='font-highlight'>${{item.price}}</span> |</h6>
+        <button class="btn btn-primary" (click)="addToCart(item)">add to Cart</button>
+      </div>
+    </div>
+    </ng-container>
+    <ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="colSize"></ngb-pagination>
+  </div>
+</div>
